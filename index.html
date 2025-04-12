@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #6dd5ed, #2193b0);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .layout {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .ads {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .ad-box {
+            background-color: #ffffff22;
+            border: 1px solid #ffffff55;
+            padding: 15px;
+            border-radius: 8px;
+            width: 120px;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .content {
+            text-align: center;
+            flex: 1;
+        }
+
+        .center-shape {
+            margin: 20px auto;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, #ffffff33 0%, #ffffff11 70%);
+            border: 5px solid #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 20px #00000044;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        #timer {
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .links {
+            margin-top: 30px;
+            display: none;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .links a {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 24px;
+            background-color: #ffffff22;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 1px solid #fff;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .links a:hover {
+            background-color: #ffffff55;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    
+        <!-- Main Content -->
+        <div class="content">
+            <h2>Kindly wait for 10 Second...</h2>
+            <div id="timer">10</div>
+            <div class="center-shape"></div>
+            <div class="links" id="links">
+                <a href="{{ url_for('first') }}">First Link</a>
+                <a href="{{ url_for('redirect_wait') }}">Second Link</a>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <script>
+        let seconds = 10;
+        const timerEl = document.getElementById('timer');
+
+        const countdown = setInterval(() => {
+            seconds--;
+            timerEl.textContent = seconds;
+            if (seconds <= 0) {
+                clearInterval(countdown);
+                document.getElementById('links').style.display = 'block';
+                timerEl.style.display = 'none';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
